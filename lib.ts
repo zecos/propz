@@ -9,30 +9,23 @@ const titleToSnake = title => title
 
 
 export const propz  = ({fieldName, state, actions }) => {
-  const { setValue, setTouched } = actions
+  const { setValue, setTouched, resetField } = actions
   const title = camelToTitle(fieldName)
   const snake = titleToSnake(fieldName)
   const id = snake
   const name = snake
   const value = state[fieldName].value
+  const label = title
   const onChange = e => setValue(fieldName, e.target.value)
-  const onBlur = _ => setTouched(fieldName)
-  const inputProps = {
-    title,
-    snake,
+  const onBlur = e => setTouched(fieldName)
+
+  return {
     id,
     name,
     value,
     onChange,
     onBlur,
+    label,
     "aria-label": title,
-  }
-
-  const labelProps = {
-    htmlFor: id
-  }
-  return {
-    inputProps,
-    labelProps,
   }
 }
