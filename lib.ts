@@ -9,15 +9,15 @@ const titleToSnake = title => title
 
 
 export const propz  = ({fieldName, state, actions }) => {
-  const { setValue, setTouched, resetField } = actions
+  const { setValue, setTouched } = actions
   const title = camelToTitle(fieldName)
   const snake = titleToSnake(fieldName)
   const id = snake
   const name = snake
   const value = state[fieldName].value
   const label = title
-  const onChange = e => setValue(fieldName, e.target.value)
-  const onBlur = e => setTouched(fieldName)
+  const onChange = e => setValue(e.target.value)
+  const onBlur = _ => setTouched()
 
   return {
     id,
